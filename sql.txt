@@ -1,164 +1,283 @@
 CREATE TABLE `user` (
-                        `uid`	INT	NOT NULL,
-                        `user_id`	VARCHAR(50)	NULL,
-                        `pwd`	VARCHAR(50)	NULL,
-                        `grade`	VARCHAR(20)	NULL,
-                        `certified`	BOOLEAN	NULL,
-                        `nickname`	VARCHAR(20)	NULL
+                        `uid`   INT  PRIMARY KEY AUTO_INCREMENT NOT NULL,
+                        `user_id`   VARCHAR(50)   NULL,
+                        `pwd`   VARCHAR(50)   NULL,
+                        `grade`   VARCHAR(20)   NULL,
+                        `certified`   BOOLEAN   NULL,
+                        `nickname`   VARCHAR(20)   NULL
 );
 
 CREATE TABLE `reviewboard` (
-                                `id`	INT	NOT NULL,
-                                `title`	VARCHAR(50)	NULL,
-                                `content`	VARCHAR(255)	NULL,
-                                `date`	DATE	NULL,
-                                `views`	INT	NULL,
-                                `uid`	INT	NOT NULL
+    id      int auto_increment
+        primary key,
+    title   varchar(50)            null,
+    content varchar(255)           null,
+    date    date default curtime() not null,
+    time    time default curtime() not null,
+    views   int                    null,
+    uid     int                    not null,
 );
 
 CREATE TABLE `roomboard` (
-                              `id`	INT	NOT NULL,
-                              `title`	VARCHAR(50)	NULL,
-                              `content`	VARCHAR(255)	NULL,
-                              `date`	DATE	NULL,
-                              `views`	INT	NULL,
-                              `uid`	INT	NOT NULL
+                             `id`   INT  PRIMARY KEY AUTO_INCREMENT NOT NULL,
+                             `title`   VARCHAR(50)   NULL,
+                             `content`   VARCHAR(255)   NULL,
+                             `date`   DATE   NULL,
+                             `views`   INT   NULL,
+                             `uid`   INT   NOT NULL
 );
 
 CREATE TABLE `infoboard` (
-                              `id`	INT	NOT NULL,
-                              `title`	VARCHAR(50)	NULL,
-                              `content`	VARCHAR(255)	NULL,
-                              `date`	DATE	NULL,
-                              `views`	INT	NULL,
-                              `uid`	INT	NOT NULL
+                             `id`   INT  PRIMARY KEY AUTO_INCREMENT NOT NULL,
+                             `title`   VARCHAR(50)   NULL,
+                             `content`   VARCHAR(255)   NULL,
+                             `date`   DATE   NULL,
+                             `views`   INT   NULL,
+                             `uid`   INT   NOT NULL
 );
 
 CREATE TABLE `message` (
-                           `id`	INT	NOT NULL,
-                           `uid1`	INT	NOT NULL,
-                           `uid2`	INT	NOT NULL,
-                           `content`	VARCHAR(255)	NULL
+                           `id`   INT  AUTO_INCREMENT NOT NULL,
+                           `uid1`   INT   NOT NULL,
+                           `uid2`   INT   NOT NULL,
+                           `content`   VARCHAR(255)   NULL,
+                           PRIMARY KEY(`id`,`uid1`)
 );
 
-CREATE TABLE `tradeboard` (
-                               `id`	INT	NOT NULL,
-                               `title`	VARCHAR(50)	NULL,
-                               `content`	VARCHAR(255)	NULL,
-                               `Field`	DATE	NULL,
-                               `views`	INT	NULL,
-                               `uid`	INT	NOT NULL
-);
 
 CREATE TABLE `roommateboard` (
-                                  `id`	INT	NOT NULL,
-                                  `title`	VARCHAR(50)	NULL,
-                                  `content`	VARCHAR(100)	NULL,
-                                  `date`	DATE	NULL,
-                                  `views`	INT	NULL,
-                                  `uid`	INT	NOT NULL
+                                 `id`   INT PRIMARY KEY AUTO_INCREMENT  NOT NULL,
+                                 `title`   VARCHAR(50)   NULL,
+                                 `content`   VARCHAR(100)   NULL,
+                                 `date`   DATE   NULL,
+                                 `views`   INT   NULL,
+                                 `uid`   INT   NOT NULL
 );
 
 CREATE TABLE `location` (
-                            `id`	INT	NOT NULL,
-                            `latitude`	DOUBLE	NULL,
-                            `longitude`	DOUBLE	NULL,
-                            `bid`	INT	NOT NULL
+                            `id`   INT PRIMARY KEY AUTO_INCREMENT  NOT NULL,
+                            `latitude`   DOUBLE   NULL,
+                            `longitude`   DOUBLE   NULL,
+                            `bid`   INT   NOT NULL
 );
 
 CREATE TABLE `comments` (
-                            `id`	INT	NOT NULL,
-                            `uid`	INT	NOT NULL,
-                            `content`	VARCHAR(255)	NULL,
-                            `review_id`	INT	NOT NULL,
-                            `info_id`	INT	NOT NULL,
-                            `mate_id`	INT	NOT NULL,
-                            `trade_id`	INT	NOT NULL,
-                            `room_id`	INT	NOT NULL
+                            `id`   INT PRIMARY KEY AUTO_INCREMENT  NOT NULL,
+                            `uid`   INT   NOT NULL,
+                            `content`   VARCHAR(255)   NULL,
+                            `review_id`   INT   NOT NULL,
+                            `info_id`   INT   NOT NULL,
+                            `mate_id`   INT   NOT NULL,
+                            `room_id`   INT   NOT NULL
 );
 
 CREATE TABLE `favorites` (
-                             `id`	INT	NOT NULL,
-                             `uid`	INT	NOT NULL,
-                             `review_id`	INT	NOT NULL,
-                             `info_id`	INT	NOT NULL,
-                             `mate_id`	INT	NOT NULL,
-                             `trade_id`	INT	NOT NULL,
-                             `room_id`	INT	NOT NULL
+                             `id`   INT PRIMARY KEY AUTO_INCREMENT  NOT NULL,
+                             `uid`   INT   NOT NULL,
+                             `review_id`   INT   NOT NULL,
+                             `info_id`   INT   NOT NULL,
+                             `mate_id`   INT   NOT NULL,
+                             `room_id`   INT   NOT NULL
 );
 
 CREATE TABLE `goods` (
-                         `id`	INT	NOT NULL,
-                         `uid`	INT	NOT NULL,
-                         `review_id`	INT	NOT NULL,
-                         `info_id`	INT	NOT NULL,
-                         `mate_id`	INT	NOT NULL,
-                         `trade_id`	INT	NOT NULL,
-                         `room_id`	INT	NOT NULL
+                         `id`   INT  PRIMARY KEY AUTO_INCREMENT NOT NULL,
+                         `uid`   INT   NOT NULL,
+                         `review_id`   INT   NOT NULL,
+                         `info_id`   INT   NOT NULL,
+                         `mate_id`   INT   NOT NULL,
+                         `room_id`   INT   NOT NULL
 );
 
 CREATE TABLE `picture` (
-                           `id`	INT	NOT NULL,
-                           `review_id`	INT	NOT NULL,
-                           `info_id`	INT	NOT NULL,
-                           `mate_id`	INT	NOT NULL,
-                           `trade_id`	INT	NOT NULL,
-                           `room_id`	INT	NOT NULL,
-                           `url`	VARCHAR(255)	NULL
+                           `id`   INT PRIMARY KEY AUTO_INCREMENT  NOT NULL,
+                           `review_id`   INT   NOT NULL,
+                           `info_id`   INT   NOT NULL,
+                           `mate_id`   INT   NOT NULL,
+                           `room_id`   INT   NOT NULL,
+                           `url`   VARCHAR(255)   NULL
 );
 
-ALTER TABLE `user` ADD CONSTRAINT `PK_USER` PRIMARY KEY (
-                                                         `uid`
-    );
 
-ALTER TABLE `review board` ADD CONSTRAINT `PK_REVIEW BOARD` PRIMARY KEY (
-                                                                         `id`
-    );
 
-ALTER TABLE `room board` ADD CONSTRAINT `PK_ROOM BOARD` PRIMARY KEY (
-                                                                     `id`
-    );
+ALTER TABLE `reviewboard` ADD CONSTRAINT `FK_user_TO_reviewboard_1` FOREIGN KEY (
+                                                                                 `uid`
+    )
+    REFERENCES `user` (
+                       `uid`
+        );
 
-ALTER TABLE `info board` ADD CONSTRAINT `PK_INFO BOARD` PRIMARY KEY (
-                                                                     `id`
-    );
+ALTER TABLE `roomboard` ADD CONSTRAINT `FK_user_TO_roomboard_1` FOREIGN KEY (
+                                                                             `uid`
+    )
+    REFERENCES `user` (
+                       `uid`
+        );
 
-ALTER TABLE `message` ADD CONSTRAINT `PK_MESSAGE` PRIMARY KEY (
-                                                               `id`,
-                                                               `uid1`
-    );
-
-ALTER TABLE `trade board` ADD CONSTRAINT `PK_TRADE BOARD` PRIMARY KEY (
-                                                                       `id`
-    );
-
-ALTER TABLE `roommate board` ADD CONSTRAINT `PK_ROOMMATE BOARD` PRIMARY KEY (
-                                                                             `id`
-    );
-
-ALTER TABLE `location` ADD CONSTRAINT `PK_LOCATION` PRIMARY KEY (
-                                                                 `id`
-    );
-
-ALTER TABLE `comments` ADD CONSTRAINT `PK_COMMENTS` PRIMARY KEY (
-                                                                 `id`
-    );
-
-ALTER TABLE `favorites` ADD CONSTRAINT `PK_FAVORITES` PRIMARY KEY (
-                                                                   `id`
-    );
-
-ALTER TABLE `goods` ADD CONSTRAINT `PK_GOODS` PRIMARY KEY (
-                                                           `id`
-    );
-
-ALTER TABLE `picture` ADD CONSTRAINT `PK_PICTURE` PRIMARY KEY (
-                                                               `id`
-    );
+ALTER TABLE `infoboard` ADD CONSTRAINT `FK_user_TO_infoboard_1` FOREIGN KEY (
+                                                                             `uid`
+    )
+    REFERENCES `user` (
+                       `uid`
+        );
 
 ALTER TABLE `message` ADD CONSTRAINT `FK_user_TO_message_1` FOREIGN KEY (
                                                                          `uid1`
     )
     REFERENCES `user` (
                        `uid`
+        );
+
+ALTER TABLE `message` ADD CONSTRAINT `FK_user_TO_message_2` FOREIGN KEY (
+                                                                         `uid2`
+    )
+    REFERENCES `user` (
+                       `uid`
+        );
+
+ALTER TABLE `roommateboard` ADD CONSTRAINT `FK_user_TO_roommateboard_1` FOREIGN KEY (
+                                                                                     `uid`
+    )
+    REFERENCES `user` (
+                       `uid`
+        );
+
+ALTER TABLE `location` ADD CONSTRAINT `FK_roomboard_TO_location_1` FOREIGN KEY (
+                                                                                `bid`
+    )
+    REFERENCES `roomboard` (
+                            `id`
+        );
+
+ALTER TABLE `comments` ADD CONSTRAINT `FK_user_TO_comments_1` FOREIGN KEY (
+                                                                           `uid`
+    )
+    REFERENCES `user` (
+                       `uid`
+        );
+
+ALTER TABLE `comments` ADD CONSTRAINT `FK_reviewboard_TO_comments_1` FOREIGN KEY (
+                                                                                  `review_id`
+    )
+    REFERENCES `reviewboard` (
+                              `id`
+        );
+
+ALTER TABLE `comments` ADD CONSTRAINT `FK_infoboard_TO_comments_1` FOREIGN KEY (
+                                                                                `info_id`
+    )
+    REFERENCES `infoboard` (
+                            `id`
+        );
+
+ALTER TABLE `comments` ADD CONSTRAINT `FK_roommateboard_TO_comments_1` FOREIGN KEY (
+                                                                                    `mate_id`
+    )
+    REFERENCES `roommateboard` (
+                                `id`
+        );
+
+ALTER TABLE `comments` ADD CONSTRAINT `FK_roomboard_TO_comments_1` FOREIGN KEY (
+                                                                                `room_id`
+    )
+    REFERENCES `roomboard` (
+                            `id`
+        );
+
+ALTER TABLE `favorites` ADD CONSTRAINT `FK_user_TO_favorites_1` FOREIGN KEY (
+                                                                             `uid`
+    )
+    REFERENCES `user` (
+                       `uid`
+        );
+
+ALTER TABLE `favorites` ADD CONSTRAINT `FK_reviewboard_TO_favorites_1` FOREIGN KEY (
+                                                                                    `review_id`
+    )
+    REFERENCES `reviewboard` (
+                              `id`
+        );
+
+ALTER TABLE `favorites` ADD CONSTRAINT `FK_infoboard_TO_favorites_1` FOREIGN KEY (
+                                                                                  `info_id`
+    )
+    REFERENCES `infoboard` (
+                            `id`
+        );
+
+ALTER TABLE `favorites` ADD CONSTRAINT `FK_roommateboard_TO_favorites_1` FOREIGN KEY (
+                                                                                      `mate_id`
+    )
+    REFERENCES `roommateboard` (
+                                `id`
+        );
+
+ALTER TABLE `favorites` ADD CONSTRAINT `FK_roomboard_TO_favorites_1` FOREIGN KEY (
+                                                                                  `room_id`
+    )
+    REFERENCES `roomboard` (
+                            `id`
+        );
+
+ALTER TABLE `goods` ADD CONSTRAINT `FK_user_TO_goods_1` FOREIGN KEY (
+                                                                     `uid`
+    )
+    REFERENCES `user` (
+                       `uid`
+        );
+
+ALTER TABLE `goods` ADD CONSTRAINT `FK_reviewboard_TO_goods_1` FOREIGN KEY (
+                                                                            `review_id`
+    )
+    REFERENCES `reviewboard` (
+                              `id`
+        );
+
+ALTER TABLE `goods` ADD CONSTRAINT `FK_infoboard_TO_goods_1` FOREIGN KEY (
+                                                                          `info_id`
+    )
+    REFERENCES `infoboard` (
+                            `id`
+        );
+
+ALTER TABLE `goods` ADD CONSTRAINT `FK_roommateboard_TO_goods_1` FOREIGN KEY (
+                                                                              `mate_id`
+    )
+    REFERENCES `roommateboard` (
+                                `id`
+        );
+
+ALTER TABLE `goods` ADD CONSTRAINT `FK_roomboard_TO_goods_1` FOREIGN KEY (
+                                                                          `room_id`
+    )
+    REFERENCES `roomboard` (
+                            `id`
+        );
+
+ALTER TABLE `picture` ADD CONSTRAINT `FK_reviewboard_TO_picture_1` FOREIGN KEY (
+                                                                                `review_id`
+    )
+    REFERENCES `reviewboard` (
+                              `id`
+        );
+
+ALTER TABLE `picture` ADD CONSTRAINT `FK_infoboard_TO_picture_1` FOREIGN KEY (
+                                                                              `info_id`
+    )
+    REFERENCES `infoboard` (
+                            `id`
+        );
+
+ALTER TABLE `picture` ADD CONSTRAINT `FK_roommateboard_TO_picture_1` FOREIGN KEY (
+                                                                                  `mate_id`
+    )
+    REFERENCES `roommateboard` (
+                                `id`
+        );
+
+ALTER TABLE `picture` ADD CONSTRAINT `FK_roomboard_TO_picture_1` FOREIGN KEY (
+                                                                              `room_id`
+    )
+    REFERENCES `roomboard` (
+                            `id`
         );
